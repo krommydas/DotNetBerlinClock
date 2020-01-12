@@ -11,6 +11,11 @@ namespace BerlinClock
         IClockDesigner CreateBerlinClock();
     }
 
+    /*
+     * This is a factory for row based clock designers.
+     * A row mask based designer is injected to each clock
+     */
+
     class RowClocksFactory : IClockFactory
     {
         public RowClocksFactory() : this(new DefaultClockLightsMask()) { }

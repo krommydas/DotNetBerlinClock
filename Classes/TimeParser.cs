@@ -13,9 +13,13 @@ namespace BerlinClock
         int ParseSeconds(string timeString);
     }
 
+    /*
+     * This time parsing implementation, uses regular expressions to process each time unit part (hours/minutes/seconds) 
+     */
+
     public class DefaultTimeParser : ITimeParser
     {
-        public int ParseHours(string timeString) { return ParseTimePart(timeString, "^(0[0-9]|1[0-9]|2[0-3]|[0-9])"); }
+        public int ParseHours(string timeString) { return ParseTimePart(timeString, "^(0[0-9]|1[0-9]|2[0-4]|[0-9])"); }
 
         public int ParseMinutes(string timeString) { return ParseTimePart(timeString, @"(?<=\d{1,2}:)[0-5][0-9]"); }
 

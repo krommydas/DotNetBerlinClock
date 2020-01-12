@@ -11,6 +11,12 @@ namespace BerlinClock
         string CurrentTime(String onLightsMask, int onLightsCount);
     }
 
+    /*
+     * This mask based clock lights row designer is using the "on lights" count.
+     * This number determines how much part of the "all lights on" mask will be on the final result.
+     * The rest part is filled with the "off lights" character
+     */
+
     sealed class DefaultClockLightsMask : IClockLightsMask
     {
         public DefaultClockLightsMask() : this('O') { }
@@ -30,9 +36,7 @@ namespace BerlinClock
             if (onLightsCount < 0 || onLightsCount > onLightsMask.Length)
                 throw new ArgumentOutOfRangeException();
 
-            int offLightsCount = onLightsMask.Length - onLightsCount;
-
-            return onLightsMask.PadRight(offLightsCount, OffLight);
+            return onLightsMask.Substring(0, onLightsCount).PadRight(onLightsMask.Length, OffLight);
         }
     }
 }
